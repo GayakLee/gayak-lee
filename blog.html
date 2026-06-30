@@ -60,10 +60,10 @@
       list.innerHTML = `
         <p class="answer-title">● Blog 최근글:</p>
         <div class="answer-group">
-          ${visible.map((post, index) => `
-            <a class="answer-row" href="${post.href}">
-              <span>${index + 1}. ${post.date}</span>
+          ${visible.map((post) => `
+            <a class="answer-row home-recent-row" href="${post.href}">
               <strong>${post.title}</strong>
+              <span>${post.date}</span>
             </a>
           `).join("")}
         </div>

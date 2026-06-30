@@ -220,6 +220,10 @@ h1 {
   margin-top: 18px;
 }
 
+.side-projects-recent {
+  margin-top: 36px;
+}
+
 .answer-group h2 {
   margin: 0 0 10px;
   color: var(--ink);
@@ -248,6 +252,35 @@ h1 {
 
 .answer-row:hover strong {
   color: var(--blue);
+}
+
+.home-recent-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.project-answer-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.project-name,
+.project-category {
+  color: var(--muted);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.project-category {
+  color: var(--accent);
 }
 
 .terminal-section .section-head {
@@ -867,5 +900,16 @@ footer {
   .project-grid {
     grid-template-columns: 1fr;
     padding: 12px;
+  }
+
+  .project-answer-row {
+    display: inline-flex;
+  }
+
+  .home-recent-row {
+    flex-wrap: wrap;
+    gap: 3px 10px;
+    white-space: normal;
+    overflow: visible;
   }
 }
