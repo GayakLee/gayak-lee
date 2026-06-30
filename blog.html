@@ -25,8 +25,9 @@
     <section class="terminal-page">
       <div class="answer-log">
         <p class="terminal-page-title">Blog</p>
+        <p class="answer-rule">---</p>
         <div class="search terminal-search">
-          <input id="searchInput" type="search" placeholder="search blog" autocomplete="off">
+          <input id="searchInput" type="search" placeholder="Search blog" autocomplete="off">
         </div>
         <div id="postList"></div>
         <button id="loadMore" class="load-more" type="button">더 보기</button>
@@ -36,6 +37,7 @@
 
   <script>
     const posts = [
+      { title: "AI를 쓰다 보면 메모리부터 터집니다", date: "2026.06.30", href: "posts/2.html", excerpt: "AI 도구를 쓰면서 메모리와 저장공간 관리까지 신경 쓰게 된 후기입니다." },
       { title: "AI로 테스트해본 것들을 남겨보려고 합니다", date: "2026.06.30", href: "posts/1.html", excerpt: "포장된 이야기가 아니라 실제로 써보고 느낀 후기를 남겨보려고 합니다." }
     ];
 
@@ -57,7 +59,6 @@
       const visible = items.slice(0, shown);
       list.innerHTML = `
         <p class="answer-title">● Blog 최근글:</p>
-        <p class="answer-rule">---</p>
         <div class="answer-group">
           ${visible.map((post, index) => `
             <a class="answer-row" href="${post.href}">
@@ -67,7 +68,12 @@
           `).join("")}
         </div>
       `;
-      if (!visible.length) list.innerHTML = '<div class="empty">검색 결과가 없습니다.</div>';
+      if (!visible.length) {
+        list.innerHTML = `
+          <p class="answer-title">● Blog 최근글:</p>
+          <div class="empty">검색 결과가 없습니다.</div>
+        `;
+      }
       button.style.display = shown < items.length ? "block" : "none";
     }
 

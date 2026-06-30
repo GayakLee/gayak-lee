@@ -652,6 +652,22 @@ h3 {
   font-weight: 800;
 }
 
+.info-banner {
+  margin: 0 0 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #000;
+}
+
+.info-banner img {
+  display: block;
+  width: 100%;
+  height: clamp(96px, 18vw, 164px);
+  object-fit: cover;
+  object-position: center;
+}
+
 .info-icons {
   margin-top: 16px;
 }
@@ -668,6 +684,7 @@ h3 {
 }
 
 .terminal-project-grid {
+  margin-top: 2px;
   padding: 0;
 }
 
@@ -749,6 +766,17 @@ h3 {
   color: var(--ink);
   line-height: 1.6;
   word-break: keep-all;
+}
+
+.project-link {
+  width: fit-content;
+  color: var(--accent);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.project-link:hover {
+  color: var(--ink);
 }
 
 .project-card p {
