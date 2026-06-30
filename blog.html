@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog - Gayak Lee</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">GL</span><span>Gayak Lee</span></a>
+      <div class="links">
+        <a href="info.html">Info</a>
+        <a href="blog.html" aria-current="page">Blog</a>
+        <a href="projects.html">Side Projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="terminal-page">
+      <div class="answer-log">
+        <p class="terminal-page-title">Blog</p>
+        <div class="search terminal-search">
+          <input id="searchInput" type="search" placeholder="search blog" autocomplete="off">
+        </div>
+        <div id="postList"></div>
+        <button id="loadMore" class="load-more" type="button">더 보기</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const posts = [
+      { title: "AI로 테스트해본 것들을 남겨보려고 합니다", date: "2026.06.30", href: "posts/1.html", excerpt: "포장된 이야기가 아니라 실제로 써보고 느낀 후기를 남겨보려고 합니다." }
+    ];
+
+    const pageSize = 3;
+    let shown = pageSize;
+    let query = "";
+    const list = document.getElementById("postList");
+    const button = document.getElementById("loadMore");
+    const input = document.getElementById("searchInput");
+
+    function filteredPosts() {
+      const q = query.trim().toLowerCase();
+      if (!q) return posts;
+      return posts.filter((post) => `${post.title} ${post.date} ${post.excerpt}`.toLowerCase().includes(q));
+    }
+
+    function render() {
+      const items = filteredPosts();
+      const visible = items.slice(0, shown);
+      list.innerHTML = `
+        <p class="answer-title">● Blog 최근글:</p>
+        <p class="answer-rule">---</p>
+        <div class="answer-group">
+          ${visible.map((post, index) => `
+            <a class="answer-row" href="${post.href}">
+              <span>${index + 1}. ${post.date}</span>
+              <strong>${post.title}</strong>
+            </a>
+          `).join("")}
+        </div>
+      `;
+      if (!visible.length) list.innerHTML = '<div class="empty">검색 결과가 없습니다.</div>';
+      button.style.display = shown < items.length ? "block" : "none";
+    }
+
+    input.addEventListener("input", (event) => {
+      query = event.target.value;
+      shown = pageSize;
+      render();
+    });
+
+    button.addEventListener("click", () => {
+      shown += pageSize;
+      render();
+    });
+
+    window.addEventListener("scroll", () => {
+      if (button.style.display === "none") return;
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 220) {
+        shown += pageSize;
+        render();
+      }
+    }, { passive: true });
+
+    render();
+  </script>
+</body>
+</html>
